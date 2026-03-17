@@ -4,13 +4,21 @@
 #include <linux/module.h>
 #include <linux/sched.h>
 #include <linux/workqueue.h>
+#ifdef CONFIG_KSU_SUSFS
+#include <linux/susfs.h>
+#endif // #ifdef CONFIG_KSU_SUSFS
 
 #include "allowlist.h"
 #include "feature.h"
 #include "klog.h" // IWYU pragma: keep
 #include "manager.h"
 #include "throne_tracker.h"
+#ifndef CONFIG_KSU_SUSFS
 #include "syscall_hook_manager.h"
+#else
+#include "setuid_hook.h"
+#include "sucompat.h"
+#endif // #ifndef CONFIG_KSU_SUSFS
 #include "ksud.h"
 #include "supercalls.h"
 #include "ksu.h"
