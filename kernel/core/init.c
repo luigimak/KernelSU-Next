@@ -12,7 +12,6 @@
 #include "klog.h" // IWYU pragma: keep
 #include "manager/manager_observer.h"
 #include "manager/throne_tracker.h"
-#include "hook/syscall_hook_manager.h"
 #include "runtime/ksud.h"
 #include "runtime/ksud_boot.h"
 #include "supercall/supercall.h"
@@ -67,7 +66,6 @@ __attribute__((naked)) int __init kernelsu_init_early(void)
 #endif
 
 struct cred *ksu_cred;
-bool ksu_late_loaded;
 
 int __init kernelsu_init(void)
 {
